@@ -1,84 +1,10 @@
-<!-- ## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/dheshalj/space/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/dheshalj/space/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out. -->
-
 # arizona
 
-<!-- [![npm version](https://img.shields.io/npm/v/axios.svg?style=flat-square)](https://www.npmjs.org/package/axios)
-[![CDNJS](https://img.shields.io/cdnjs/v/axios.svg?style=flat-square)](https://cdnjs.com/libraries/axios)
-[![build status](https://img.shields.io/travis/axios/axios/master.svg?style=flat-square)](https://travis-ci.org/axios/axios)
-[![code coverage](https://img.shields.io/coveralls/mzabriskie/axios.svg?style=flat-square)](https://coveralls.io/r/mzabriskie/axios)
-[![install size](https://packagephobia.now.sh/badge?p=axios)](https://packagephobia.now.sh/result?p=axios)
-[![npm downloads](https://img.shields.io/npm/dm/axios.svg?style=flat-square)](http://npm-stat.com/charts.html?package=axios)
-[![gitter chat](https://img.shields.io/gitter/room/mzabriskie/axios.svg?style=flat-square)](https://gitter.im/mzabriskie/axios)
-[![code helpers](https://www.codetriage.com/axios/axios/badges/users.svg)](https://www.codetriage.com/axios/axios) -->
+[![npm version](https://img.shields.io/npm/v/arizonajs.svg?style=flat-square)](https://www.npmjs.org/package/arizonajs)
+[![install size](https://packagephobia.now.sh/badge?p=arizonajs)](https://packagephobia.now.sh/result?p=arizonajs)
+[![npm downloads](https://img.shields.io/npm/dm/arizonajs.svg?style=flat-square)](http://npm-stat.com/charts.html?package=arizonajs)
 
-
-## Table of Contents
-
-  - [Features](#features)
-  - [Browser Support](#browser-support)
-  - [Installing](#installing)
-  - [Example](#example)
-  - [Axios API](#axios-api)
-  - [Request method aliases](#request-method-aliases)
-  - [Concurrency (Deprecated)](#concurrency-deprecated)
-  - [Creating an instance](#creating-an-instance)
-  - [Instance methods](#instance-methods)
-  - [Request Config](#request-config)
-  - [Response Schema](#response-schema)
-  - [Config Defaults](#config-defaults)
-    - [Global axios defaults](#global-axios-defaults)
-    - [Custom instance defaults](#custom-instance-defaults)
-    - [Config order of precedence](#config-order-of-precedence)
-  - [Interceptors](#interceptors)
-  - [Handling Errors](#handling-errors)
-  - [Cancellation](#cancellation)
-  - [Using application/x-www-form-urlencoded format](#using-applicationx-www-form-urlencoded-format)
-    - [Browser](#browser)
-    - [Node.js](#nodejs)
-      - [Query string](#query-string)
-      - [Form data](#form-data)
-  - [Semver](#semver)
-  - [Promises](#promises)
-  - [TypeScript](#typescript)
-  - [Resources](#resources)
-  - [Credits](#credits)
-  - [License](#license)
+Promise based HTTP client for the browser and node.js
 
 ## Features
 
@@ -97,58 +23,43 @@ Having trouble with Pages? Check out our [documentation](https://docs.github.com
 --- | --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11 ✔ |
 
-[![Browser Matrix](https://saucelabs.com/open_sauce/build_matrix/axios.svg)](https://saucelabs.com/u/axios)
 
 ## Installing
 
 Using npm:
 
 ```bash
-$ npm install axios
-```
-
-Using bower:
-
-```bash
-$ bower install axios
-```
-
-Using yarn:
-
-```bash
-$ yarn add axios
+$ npm install arizonajs
 ```
 
 Using jsDelivr CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/arizonajs/dist/arizona.min.js"></script>
 ```
 
 Using unpkg CDN:
 
 ```html
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/arizonajs@2.6.0/dist/arizona.min.js"></script>
 ```
 
 ## Example
 
-### note: CommonJS usage
-In order to gain the TypeScript typings (for intellisense / autocomplete) while using CommonJS imports with `require()` use the following approach:
+### Nodejs usage
+
 
 ```js
-const axios = require('axios').default;
-
-// axios.<method> will now provide autocomplete and parameter typings
+const arizona = require('arizonajs');
 ```
 
 Performing a `GET` request
 
 ```js
-const axios = require('axios');
+const arizona = require('arizonajs');
 
 // Make a request for a user with a given ID
-axios.get('/user?ID=12345')
+arizona.get('https://api.example.com/users')
   .then(function (response) {
     // handle success
     console.log(response);
@@ -157,14 +68,14 @@ axios.get('/user?ID=12345')
     // handle error
     console.log(error);
   })
-  .then(function () {
+  .finally(function () {
     // always executed
   });
 
 // Optionally the request above could also be done as
-axios.get('/user', {
+arizona.get('https://api.example.com/user', {
     params: {
-      ID: 12345
+      id: 56891
     }
   })
   .then(function (response) {
@@ -173,14 +84,14 @@ axios.get('/user', {
   .catch(function (error) {
     console.log(error);
   })
-  .then(function () {
+  .finally(function () {
     // always executed
   });  
 
 // Want to use async/await? Add the `async` keyword to your outer function/method.
 async function getUser() {
   try {
-    const response = await axios.get('/user?ID=12345');
+    const response = await arizona.get('https://api.example.com/users?id=2645');
     console.log(response);
   } catch (error) {
     console.error(error);
@@ -188,13 +99,10 @@ async function getUser() {
 }
 ```
 
-> **NOTE:** `async/await` is part of ECMAScript 2017 and is not supported in Internet
-> Explorer and older browsers, so use with caution.
-
 Performing a `POST` request
 
 ```js
-axios.post('/user', {
+arizona.post('https://api.example.com/user/create', {
     firstName: 'Fred',
     lastName: 'Flintstone'
   })
@@ -209,90 +117,81 @@ axios.post('/user', {
 Performing multiple concurrent requests
 
 ```js
-function getUserAccount() {
-  return axios.get('/user/12345');
-}
+arizona.all([arizona.get('/user?id=5867'), arizona.get('/user?id=7555')])
+  .then(arizona.spread(function (user1, user2) {
+    // Both requests are now complete
+  }));
+```
 
-function getUserPermissions() {
-  return axios.get('/user/12345/permissions');
-}
+### Arizona API
 
-Promise.all([getUserAccount(), getUserPermissions()])
-  .then(function (results) {
-    const acct = results[0];
-    const perm = results[1];
+Requests can be made using the CDN by passing the relevant config to `arizona`.
+
+##### arizona(config)
+
+```js
+// GET request
+arizona({
+  method: 'get',
+  url: 'http://api.test.com/jsonfile?id=354',
+})
+  .then(function (response) {
+    response.data
   });
 ```
 
-## axios API
-
-Requests can be made by passing the relevant config to `axios`.
-
-##### axios(config)
-
 ```js
-// Send a POST request
-axios({
+// POST request
+arizona({
   method: 'post',
-  url: '/user/12345',
+  url: 'http://api.test.com/jsonfile/create',
   data: {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
+    firstName: 'Rafe',
+    lastName: 'McCawaley'
   }
 });
 ```
 
-```js
-// GET request for remote image in node.js
-axios({
-  method: 'get',
-  url: 'http://bit.ly/2mTM3nY',
-  responseType: 'stream'
-})
-  .then(function (response) {
-    response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
-  });
-```
 
-##### axios(url[, config])
+
+##### arizona(url[, config])
 
 ```js
 // Send a GET request (default method)
-axios('/user/12345');
+arizona('https://api.example.com/user?id=12345');
 ```
 
 ### Request method aliases
 
 For convenience aliases have been provided for all supported request methods.
 
-##### axios.request(config)
-##### axios.get(url[, config])
-##### axios.delete(url[, config])
-##### axios.head(url[, config])
-##### axios.options(url[, config])
-##### axios.post(url[, data[, config]])
-##### axios.put(url[, data[, config]])
-##### axios.patch(url[, data[, config]])
+##### arizona.request(config)
+##### arizona.get(url[, config])
+##### arizona.delete(url[, config])
+##### arizona.head(url[, config])
+##### arizona.options(url[, config])
+##### arizona.post(url[, data[, config]])
+##### arizona.put(url[, data[, config]])
+##### arizona.patch(url[, data[, config]])
 
 ###### NOTE
 When using the alias methods `url`, `method`, and `data` properties don't need to be specified in config.
 
-### Concurrency (Deprecated)
-Please use `Promise.all` to replace the below functions.
+### Concurrency
 
 Helper functions for dealing with concurrent requests.
 
-axios.all(iterable)
-axios.spread(callback)
+##### arizona.all(iterable)
+##### arizona.spread(callback)
 
 ### Creating an instance
 
-You can create a new instance of axios with a custom config.
+You can create a new instance of arizona with a custom config.
 
-##### axios.create([config])
+##### arizona.create([config])
 
 ```js
-const instance = axios.create({
+const instance = arizona.create({
   baseURL: 'https://some-domain.com/api/',
   timeout: 1000,
   headers: {'X-Custom-Header': 'foobar'}
@@ -303,15 +202,15 @@ const instance = axios.create({
 
 The available instance methods are listed below. The specified config will be merged with the instance config.
 
-##### axios#request(config)
-##### axios#get(url[, config])
-##### axios#delete(url[, config])
-##### axios#head(url[, config])
-##### axios#options(url[, config])
-##### axios#post(url[, data[, config]])
-##### axios#put(url[, data[, config]])
-##### axios#patch(url[, data[, config]])
-##### axios#getUri([config])
+##### arizona#request(config)
+##### arizona#get(url[, config])
+##### arizona#delete(url[, config])
+##### arizona#head(url[, config])
+##### arizona#options(url[, config])
+##### arizona#post(url[, data[, config]])
+##### arizona#put(url[, data[, config]])
+##### arizona#patch(url[, data[, config]])
+##### arizona#getUri([config])
 
 ## Request Config
 
@@ -326,7 +225,7 @@ These are the available config options for making requests. Only the `url` is re
   method: 'get', // default
 
   // `baseURL` will be prepended to `url` unless `url` is absolute.
-  // It can be convenient to set `baseURL` for an instance of axios to pass relative URLs
+  // It can be convenient to set `baseURL` for an instance of arizona to pass relative URLs
   // to methods of that instance.
   baseURL: 'https://some-domain.com/api/',
 
@@ -365,7 +264,7 @@ These are the available config options for making requests. Only the `url` is re
   },
 
   // `data` is the data to be sent as the request body
-  // Only applicable for request methods 'PUT', 'POST', 'DELETE , and 'PATCH'
+  // Only applicable for request methods 'PUT', 'POST', and 'PATCH'
   // When no `transformRequest` is set, must be of one of the following types:
   // - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams
   // - Browser only: FormData, File, Blob
@@ -408,7 +307,7 @@ These are the available config options for making requests. Only the `url` is re
   //   browser only: 'blob'
   responseType: 'json', // default
 
-  // `responseEncoding` indicates encoding to use for decoding responses (Node.js only)
+  // `responseEncoding` indicates encoding to use for decoding responses
   // Note: Ignored for `responseType` of 'stream' or client-side requests
   responseEncoding: 'utf8', // default
 
@@ -419,22 +318,17 @@ These are the available config options for making requests. Only the `url` is re
   xsrfHeaderName: 'X-XSRF-TOKEN', // default
 
   // `onUploadProgress` allows handling of progress events for uploads
-  // browser only
   onUploadProgress: function (progressEvent) {
     // Do whatever you want with the native progress event
   },
 
   // `onDownloadProgress` allows handling of progress events for downloads
-  // browser only
   onDownloadProgress: function (progressEvent) {
     // Do whatever you want with the native progress event
   },
 
-  // `maxContentLength` defines the max size of the http response content in bytes allowed in node.js
+  // `maxContentLength` defines the max size of the http response content in bytes allowed
   maxContentLength: 2000,
-
-  // `maxBodyLength` (Node only option) defines the max size of the http request content in bytes allowed
-  maxBodyLength: 2000,
 
   // `validateStatus` defines whether to resolve or reject the promise for a given
   // HTTP response status code. If `validateStatus` returns `true` (or is set to `null`
@@ -460,7 +354,7 @@ These are the available config options for making requests. Only the `url` is re
   httpAgent: new http.Agent({ keepAlive: true }),
   httpsAgent: new https.Agent({ keepAlive: true }),
 
-  // `proxy` defines the hostname and port of the proxy server.
+  // 'proxy' defines the hostname and port of the proxy server.
   // You can also define your proxy using the conventional `http_proxy` and
   // `https_proxy` environment variables. If you are using environment variables
   // for your proxy configuration, you can also define a `no_proxy` environment
@@ -482,14 +376,7 @@ These are the available config options for making requests. Only the `url` is re
   // `cancelToken` specifies a cancel token that can be used to cancel the request
   // (see Cancellation section below for details)
   cancelToken: new CancelToken(function (cancel) {
-  }),
-
-  // `decompress` indicates whether or not the response body should be decompressed 
-  // automatically. If set to `true` will also remove the 'content-encoding' header 
-  // from the responses objects of all decompressed responses
-  // - Node only (XHR cannot turn off decompression)
-  decompress: true // default
-
+  })
 }
 ```
 
@@ -508,12 +395,11 @@ The response for a request contains the following information.
   // `statusText` is the HTTP status message from the server response
   statusText: 'OK',
 
-  // `headers` the HTTP headers that the server responded with
-  // All header names are lower cased and can be accessed using the bracket notation.
-  // Example: `response.headers['content-type']`
+  // `headers` the headers that the server responded with
+  // All header names are lower cased
   headers: {},
 
-  // `config` is the config that was provided to `axios` for the request
+  // `config` is the config that was provided to `arizona` for the request
   config: {},
 
   // `request` is the request that generated this response
@@ -526,7 +412,7 @@ The response for a request contains the following information.
 When using `then`, you will receive the response as follows:
 
 ```js
-axios.get('/user/12345')
+arizona.get('/user/12345')
   .then(function (response) {
     console.log(response.data);
     console.log(response.status);
@@ -542,19 +428,19 @@ When using `catch`, or passing a [rejection callback](https://developer.mozilla.
 
 You can specify config defaults that will be applied to every request.
 
-### Global axios defaults
+### Global arizona defaults
 
 ```js
-axios.defaults.baseURL = 'https://api.example.com';
-axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+arizona.defaults.baseURL = 'https://api.example.com';
+arizona.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+arizona.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 ```
 
 ### Custom instance defaults
 
 ```js
 // Set config defaults when creating the instance
-const instance = axios.create({
+const instance = arizona.create({
   baseURL: 'https://api.example.com'
 });
 
@@ -564,12 +450,12 @@ instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
 ### Config order of precedence
 
-Config will be merged with an order of precedence. The order is library defaults found in [lib/defaults.js](https://github.com/axios/axios/blob/master/lib/defaults.js#L28), then `defaults` property of the instance, and finally `config` argument for the request. The latter will take precedence over the former. Here's an example.
+Config will be merged with an order of precedence. The order is library defaults found in [lib/defaults.js](https://github.com/arizona/arizona/blob/master/lib/defaults.js#L28), then `defaults` property of the instance, and finally `config` argument for the request. The latter will take precedence over the former. Here's an example.
 
 ```js
 // Create an instance using the config defaults provided by the library
 // At this point the timeout config value is `0` as is the default for the library
-const instance = axios.create();
+const instance = arizona.create();
 
 // Override timeout default for the library
 // Now all requests using this instance will wait 2.5 seconds before timing out
@@ -587,7 +473,7 @@ You can intercept requests or responses before they are handled by `then` or `ca
 
 ```js
 // Add a request interceptor
-axios.interceptors.request.use(function (config) {
+arizona.interceptors.request.use(function (config) {
     // Do something before request is sent
     return config;
   }, function (error) {
@@ -596,7 +482,7 @@ axios.interceptors.request.use(function (config) {
   });
 
 // Add a response interceptor
-axios.interceptors.response.use(function (response) {
+arizona.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;
@@ -610,21 +496,21 @@ axios.interceptors.response.use(function (response) {
 If you need to remove an interceptor later you can.
 
 ```js
-const myInterceptor = axios.interceptors.request.use(function () {/*...*/});
-axios.interceptors.request.eject(myInterceptor);
+const myInterceptor = arizona.interceptors.request.use(function () {/*...*/});
+arizona.interceptors.request.eject(myInterceptor);
 ```
 
-You can add interceptors to a custom instance of axios.
+You can add interceptors to a custom instance of arizona.
 
 ```js
-const instance = axios.create();
+const instance = arizona.create();
 instance.interceptors.request.use(function () {/*...*/});
 ```
 
 ## Handling Errors
 
 ```js
-axios.get('/user/12345')
+arizona.get('/user/12345')
   .catch(function (error) {
     if (error.response) {
       // The request was made and the server responded with a status code
@@ -648,9 +534,9 @@ axios.get('/user/12345')
 Using the `validateStatus` config option, you can define HTTP code(s) that should throw an error.
 
 ```js
-axios.get('/user/12345', {
+arizona.get('/user/12345', {
   validateStatus: function (status) {
-    return status < 500; // Resolve only if the status code is less than 500
+    return status < 500; // Reject only if the status code is greater than or equal to 500
   }
 })
 ```
@@ -658,7 +544,7 @@ axios.get('/user/12345', {
 Using `toJSON` you get an object with more information about the HTTP error.
 
 ```js
-axios.get('/user/12345')
+arizona.get('/user/12345')
   .catch(function (error) {
     console.log(error.toJSON());
   });
@@ -668,25 +554,25 @@ axios.get('/user/12345')
 
 You can cancel a request using a *cancel token*.
 
-> The axios cancel token API is based on the withdrawn [cancelable promises proposal](https://github.com/tc39/proposal-cancelable-promises).
+> The arizona cancel token API is based on the withdrawn [cancelable promises proposal](https://github.com/tc39/proposal-cancelable-promises).
 
 You can create a cancel token using the `CancelToken.source` factory as shown below:
 
 ```js
-const CancelToken = axios.CancelToken;
+const CancelToken = arizona.CancelToken;
 const source = CancelToken.source();
 
-axios.get('/user/12345', {
+arizona.get('/user/12345', {
   cancelToken: source.token
 }).catch(function (thrown) {
-  if (axios.isCancel(thrown)) {
+  if (arizona.isCancel(thrown)) {
     console.log('Request canceled', thrown.message);
   } else {
     // handle error
   }
 });
 
-axios.post('/user/12345', {
+arizona.post('/user/12345', {
   name: 'new name'
 }, {
   cancelToken: source.token
@@ -699,10 +585,10 @@ source.cancel('Operation canceled by the user.');
 You can also create a cancel token by passing an executor function to the `CancelToken` constructor:
 
 ```js
-const CancelToken = axios.CancelToken;
+const CancelToken = arizona.CancelToken;
 let cancel;
 
-axios.get('/user/12345', {
+arizona.get('/user/12345', {
   cancelToken: new CancelToken(function executor(c) {
     // An executor function receives a cancel function as a parameter
     cancel = c;
@@ -717,7 +603,7 @@ cancel();
 
 ## Using application/x-www-form-urlencoded format
 
-By default, axios serializes JavaScript objects to `JSON`. To send data in the `application/x-www-form-urlencoded` format instead, you can use one of the following options.
+By default, arizona serializes JavaScript objects to `JSON`. To send data in the `application/x-www-form-urlencoded` format instead, you can use one of the following options.
 
 ### Browser
 
@@ -727,7 +613,7 @@ In a browser, you can use the [`URLSearchParams`](https://developer.mozilla.org/
 const params = new URLSearchParams();
 params.append('param1', 'value1');
 params.append('param2', 'value2');
-axios.post('/foo', params);
+arizona.post('/foo', params);
 ```
 
 > Note that `URLSearchParams` is not supported by all browsers (see [caniuse.com](http://www.caniuse.com/#feat=urlsearchparams)), but there is a [polyfill](https://github.com/WebReflection/url-search-params) available (make sure to polyfill the global environment).
@@ -736,7 +622,7 @@ Alternatively, you can encode data using the [`qs`](https://github.com/ljharb/qs
 
 ```js
 const qs = require('qs');
-axios.post('/foo', qs.stringify({ 'bar': 123 }));
+arizona.post('/foo', qs.stringify({ 'bar': 123 }));
 ```
 
 Or in another way (ES6),
@@ -750,26 +636,16 @@ const options = {
   data: qs.stringify(data),
   url,
 };
-axios(options);
+arizona(options);
 ```
 
 ### Node.js
-
-#### Query string
 
 In node.js, you can use the [`querystring`](https://nodejs.org/api/querystring.html) module as follows:
 
 ```js
 const querystring = require('querystring');
-axios.post('http://something.com/', querystring.stringify({ foo: 'bar' }));
-```
-
-or ['URLSearchParams'](https://nodejs.org/api/url.html#url_class_urlsearchparams) from ['url module'](https://nodejs.org/api/url.html) as follows:
-
-```js
-const url = require('url');
-const params = new url.URLSearchParams({ foo: 'bar' });
-axios.post('http://something.com/', params.toString());
+arizona.post('http://something.com/', querystring.stringify({ foo: 'bar' }));
 ```
 
 You can also use the [`qs`](https://github.com/ljharb/qs) library.
@@ -777,59 +653,33 @@ You can also use the [`qs`](https://github.com/ljharb/qs) library.
 ###### NOTE
 The `qs` library is preferable if you need to stringify nested objects, as the `querystring` method has known issues with that use case (https://github.com/nodejs/node-v0.x-archive/issues/1665).
 
-#### Form data
-
-In node.js, you can use the [`form-data`](https://github.com/form-data/form-data) library as follows:
-
-```js
-const FormData = require('form-data');
- 
-const form = new FormData();
-form.append('my_field', 'my value');
-form.append('my_buffer', new Buffer(10));
-form.append('my_file', fs.createReadStream('/foo/bar.jpg'));
-
-axios.post('https://example.com', form, { headers: form.getHeaders() })
-```
-
-Alternatively, use an interceptor:
-
-```js
-axios.interceptors.request.use(config => {
-  if (config.data instanceof FormData) {
-    Object.assign(config.headers, config.data.getHeaders());
-  }
-  return config;
-});
-```
-
 ## Semver
 
-Until axios reaches a `1.0` release, breaking changes will be released with a new minor version. For example `0.5.1`, and `0.5.4` will have the same API, but `0.6.0` will have breaking changes.
+Until arizona reaches a `1.0` release, breaking changes will be released with a new minor version. For example `0.5.1`, and `0.5.4` will have the same API, but `0.6.0` will have breaking changes.
 
 ## Promises
 
-axios depends on a native ES6 Promise implementation to be [supported](http://caniuse.com/promises).
+arizona depends on a native ES6 Promise implementation to be [supported](http://caniuse.com/promises).
 If your environment doesn't support ES6 Promises, you can [polyfill](https://github.com/jakearchibald/es6-promise).
 
 ## TypeScript
-axios includes [TypeScript](http://typescriptlang.org) definitions.
+arizona includes [TypeScript](http://typescriptlang.org) definitions.
 ```typescript
-import axios from 'axios';
-axios.get('/user?ID=12345');
+import arizona from 'arizona';
+arizona.get('/user?ID=12345');
 ```
 
 ## Resources
 
-* [Changelog](https://github.com/axios/axios/blob/master/CHANGELOG.md)
-* [Upgrade Guide](https://github.com/axios/axios/blob/master/UPGRADE_GUIDE.md)
-* [Ecosystem](https://github.com/axios/axios/blob/master/ECOSYSTEM.md)
-* [Contributing Guide](https://github.com/axios/axios/blob/master/CONTRIBUTING.md)
-* [Code of Conduct](https://github.com/axios/axios/blob/master/CODE_OF_CONDUCT.md)
+* [Changelog](https://github.com/arizona/arizona/blob/master/CHANGELOG.md)
+* [Upgrade Guide](https://github.com/arizona/arizona/blob/master/UPGRADE_GUIDE.md)
+* [Ecosystem](https://github.com/arizona/arizona/blob/master/ECOSYSTEM.md)
+* [Contributing Guide](https://github.com/arizona/arizona/blob/master/CONTRIBUTING.md)
+* [Code of Conduct](https://github.com/arizona/arizona/blob/master/CODE_OF_CONDUCT.md)
 
 ## Credits
 
-axios is heavily inspired by the [$http service](https://docs.angularjs.org/api/ng/service/$http) provided in [Angular](https://angularjs.org/). Ultimately axios is an effort to provide a standalone `$http`-like service for use outside of Angular.
+arizona is heavily inspired by the [$http service](https://docs.angularjs.org/api/ng/service/$http) provided in [Angular](https://angularjs.org/). Ultimately arizona is an effort to provide a standalone `$http`-like service for use outside of Angular.
 
 ## License
 
