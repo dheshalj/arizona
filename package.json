@@ -1,0 +1,22 @@
+{
+  "name": "arizonajs",
+  "version": "2.6.0",
+  "description": "HTTP Request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dheshalj/arizona.git"
+  },
+  "keywords": [
+    "HTTP"
+  ],
+  "author": "Dheshal Jayamanne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dheshalj/arizona/issues"
+  },
+  "homepage": "https://dheshalj.github.io/arizona/"
+}
